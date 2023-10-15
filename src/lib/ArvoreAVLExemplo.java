@@ -2,7 +2,7 @@ package lib;
 
 import java.util.Comparator;
 
-public class ArvoreAVLExemplo <T> extends ArvoreBinariaExemplo<T>{
+public class ArvoreAVLExemplo <T extends Comparable> extends ArvoreBinariaExemplo<T>{
 
     public ArvoreAVLExemplo(Comparator<T> comparator) {
         super(comparator);

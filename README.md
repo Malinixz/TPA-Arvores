@@ -5,7 +5,7 @@ Este repositório contém códigos java a serem utilizados no trabalho prático 
 Na pasta [lib](src/lib) se encontram os seguintes arquivos:
 - [IArvoreBinaria.java](src/lib/IArvoreBinaria.java): Interface a ser implementada pela sua classe ArvoreBinaria.
 - [ArvoreBinariaExemplo.java](src/lib/ArvoreBinariaExemplo.java): Esta classe deve ser substituída pela sua classe de "ArvoreBinaria". Você pode utilizar esta classe como base para implementar a sua, implementando os métodos sobrescritos.
-- [NoExemplo.java](src/lib/NoExemplo.java): Pode ser usado como base para sua classe "No".
+- [NoExemplo.java](src/lib/No.java): Pode ser usado como base para sua classe "No".
 - [ArvoreAVLExemplo.java](src/lib/ArvoreAVLExemplo.java): Esta classe deve ser substituída pela sua classe de "ArvoreAVL".
 
   Na pasta [app](src/app) se encontram os seguintes arquivos:
