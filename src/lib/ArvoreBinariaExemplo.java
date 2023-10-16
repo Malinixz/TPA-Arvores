@@ -284,7 +284,12 @@ public class ArvoreBinariaExemplo<T extends Comparable> implements IArvoreBinari
     
     @Override
     public void reiniciarNavegacao(){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        atual = encontrarMenorElemento(raiz);
+        pilhaNavegacao = new ArrayList<>();
+        while (atual != null) {
+            pilhaNavegacao.add(atual);
+            atual = atual.getEsquerda();
+        }
     }
     
 }
