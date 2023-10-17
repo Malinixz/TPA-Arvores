@@ -42,7 +42,7 @@ public interface IArvoreBinaria<T> {
      * @param valor - será utilizado para passar o valor da chave a ser buscada. Por exemplo, se for um árvore de Alunos indexada por nome, deve-se passar um objeto do tipo aluno com o nome que se deseja buscar.
      * @return caso tenha sido encontrado um elemento com o valor buscado, o elemento será removido da árvore e seu valor (do tipo T) será retornado. Caso contrário retorna null.
      */
-//    public T remover(T valor);
+    public T remover(T valor);
     
     /**
      * Método que retorna a altura da árvore
@@ -80,5 +80,5 @@ public interface IArvoreBinaria<T> {
      * Metódo que permite reiniciar a iteração sobre os elementos da árvore.
      * Não tem retorno (void). Quando chamado o iterador voltará para o primeiro elemento da árvore. Assim, a primeira chamada a obterProximo após resetar a navegação vai devolver o valor do menor elemento da árvore.
      */
-    public void reiniciarNavegacao();
+    //public void reiniciarNavegacao();
 }

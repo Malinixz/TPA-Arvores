@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 
-public class ArvoreBinariaExemplo<T extends Comparable> implements IArvoreBinaria<T> {
+public class ArvoreBinaria<T extends Comparable> implements IArvoreBinaria<T> {
     
     protected No<T> raiz = null;
     protected Comparator<T> comparador; 
@@ -14,7 +14,7 @@ public class ArvoreBinariaExemplo<T extends Comparable> implements IArvoreBinari
     protected No<T> atual = null;
     private ArrayList<No<T>> pilhaNavegacao = null;
 
-    public ArvoreBinariaExemplo(Comparator<T> comp) {
+    public ArvoreBinaria(Comparator<T> comp) {
         comparador = comp;
     }
     
@@ -67,95 +67,84 @@ public class ArvoreBinariaExemplo<T extends Comparable> implements IArvoreBinari
         }
     }
 
-//    public boolean remover(T valor){
-//        //buscar o No na árvore
-//        No<T> atual = this.raiz;
-//        No<T> paiAtual = null;
-//        while(atual != null){
-//            if (atual.getValor().equals(valor)){
-//                break;
-//            }else if (valor.compareTo(atual.getValor()) == -1){ //valor procurado é menor que o atual
-//                paiAtual = atual;
-//                atual = atual.getFilhoEsquerda();
-//            }else{
-//                paiAtual = atual;
-//                atual = atual.getFilhoDireita();
-//            }
-//        }
-//        //verifica se existe o No
-//        if (atual != null){
-//
-//            //No tem 2 filhos ou No tem somente filho à direita
-//            if (atual.getFilhoDireita() != null){
-//
-//                No<T> substituto = atual.getFilhoDireita();
-//                No<T> paiSubstituto = atual;
-//                while(substituto.getFilhoEsquerda() != null){
-//                    paiSubstituto = substituto;
-//                    substituto = substituto.getFilhoEsquerda();
-//                }
-//                substituto.setFilhoEsquerda(atual.getFilhoEsquerda());
-//                if (paiAtual != null){
-//                    if (atual.getValor().compareTo(paiAtual.getValor()) == -1){ //atual < paiAtual
-//                        paiAtual.setFilhoEsquerda(substituto);
-//                    }else{
-//                        paiAtual.setFilhoDireita(substituto);
-//                    }
-//                }else{ //se não tem paiAtual, então é a raiz
-//                    this.raiz = substituto;
-//                    paiSubstituto.setFilhoEsquerda(null);
-//                    this.raiz.setFilhoDireita(paiSubstituto);
-//                    this.raiz.setFilhoEsquerda(atual.getFilhoEsquerda());
-//                }
-//
-//                //removeu o No da árvore
-//                if (substituto.getValor().compareTo(paiSubstituto.getValor()) == -1){ //substituto < paiSubstituto
-//                    paiSubstituto.setFilhoEsquerda(null);
-//                }else{
-//                    paiSubstituto.setFilhoDireita(null);
-//                }
-//
-//            }else if (atual.getFilhoEsquerda() != null){ //tem filho só à esquerda
-//                No<T> substituto = atual.getFilhoEsquerda();
-//                No<T> paiSubstituto = atual;
-//                while(substituto.getFilhoDireita() != null){
-//                    paiSubstituto = substituto;
-//                    substituto = substituto.getFilhoDireita();
-//                }
-//                if (paiAtual != null){
-//                    if (atual.getValor().compareTo(paiAtual.getValor()) == -1){ //atual < paiAtual
-//                        paiAtual.setFilhoEsquerda(substituto);
-//                    }else{
-//                        paiAtual.setFilhoDireita(substituto);
-//                    }
-//                }else{ //se for a raiz
-//                    this.raiz = substituto;
-//                }
-//
-//                //removeu o No da árvore
-//                if (substituto.getValor().compareTo(paiSubstituto.getValor()) == -1){ //substituto < paiSubstituto
-//                    paiSubstituto.setFilhoEsquerda(null);
-//                }else{
-//                    paiSubstituto.setFilhoDireita(null);
-//                }
-//            }else{ //não tem filho
-//                if (paiAtual != null){
-//                    if (atual.getValor().compareTo(paiAtual.getValor()) == -1){ //atual < paiAtual
-//                        paiAtual.setFilhoEsquerda(null);
-//                    }else{
-//                        paiAtual.setFilhoDireita(null);
-//                    }
-//                }else{ //é a raiz
-//                    this.raiz = null;
-//                }
-//            }
-//
-//            return true;
-//        }else{
-//            return false;
-//        }
-//    }
+    public T remover(T valor) {
+        // Inicializa os nós de busca
+        No<T> atual = raiz;
+        No<T> paiAtual = null;
+    
+        // Encontra o nó com o valor desejado
+        while (atual != null) {
+            int comparacao = comparador.compare(valor, atual.getValor());
+    
+            if (comparacao == 0) {
+                // O valor foi encontrado, vamos removê-lo
+    
+                if (atual.getFilhoEsquerda() == null && atual.getFilhoDireita() == null) {
+                    // Caso 1: O nó não possui filhos, é uma folha
+                    if (paiAtual != null) {
+                        if (atual.getValor().compareTo(paiAtual.getValor()) == -1) {
+                            paiAtual.setFilhoEsquerda(null);
+                        } else {
+                            paiAtual.setFilhoDireita(null);
+                        }
+                    } else {
+                        raiz = null;
+                    }
+                } else if (atual.getFilhoEsquerda() != null && atual.getFilhoDireita() != null) {
+                    // Caso 2: O nó possui dois filhos
+                    No<T> substituto = atual.getFilhoDireita();
+                    No<T> paiSubstituto = atual;
+    
+                    while (substituto.getFilhoEsquerda() != null) {
+                        paiSubstituto = substituto;
+                        substituto = substituto.getFilhoEsquerda();
+                    }
+    
+                    substituto.setFilhoEsquerda(atual.getFilhoEsquerda);
+    
+                    if (paiAtual != null) {
+                        if (atual.getValor().compareTo(paiAtual.getValor()) == -1) {
+                            paiAtual.setFilhoEsquerda(substituto);
+                        } else {
+                            paiAtual.setFilhoDireita(substituto);
+                        }
+                    } else {
+                        raiz = substituto;
+                    }
+    
+                    if (substituto.getValor().compareTo(paiSubstituto.getValor()) == -1) {
+                        paiSubstituto.setFilhoEsquerda(null);
+                    } else {
+                        paiSubstituto.setFilhoDireita(null);
+                    }
+                } else {
+                    // Caso 3: O nó possui um filho à esquerda ou à direita
+                    No<T> filho = (atual.getFilhoEsquerda() != null) ? atual.getFilhoEsquerda() : atual.getFilhoDireita();
+    
+                    if (paiAtual != null) {
+                        if (atual.getValor().compareTo(paiAtual.getValor()) == -1) {
+                            paiAtual.setFilhoEsquerda(filho);
+                        } else {
+                            paiAtual.setFilhoDireita(filho);
+                        }
+                    } else {
+                        raiz = filho;
+                    }
+                }
+    
+                return atual.getValor(); // Retorna o valor removido
+            } else if (comparacao < 0) {
+                paiAtual = atual;
+                atual = atual.getFilhoEsquerda();
+            } else {
+                paiAtual = atual;
+                atual = atual.getFilhoDireita();
+            }
+        }
+        return null; // Valor não encontrado, retorna null
+    }
 
+    
     @Override
     public int altura() {
         if (raiz == null) {
@@ -282,14 +271,14 @@ public class ArvoreBinariaExemplo<T extends Comparable> implements IArvoreBinari
         return proximoNo.getValor();
     }
     
-    @Override
-    public void reiniciarNavegacao(){
-        atual = encontrarMenorElemento(raiz);
-        pilhaNavegacao = new ArrayList<>();
-        while (atual != null) {
-            pilhaNavegacao.add(atual);
-            atual = atual.getEsquerda();
-        }
-    }
+    // @Override
+    // public void reiniciarNavegacao(){
+    //     atual = encontrarMenorElemento(raiz);
+    //     pilhaNavegacao = new ArrayList<>();
+    //     while (atual != null) {
+    //         pilhaNavegacao.add(atual);
+    //         atual = atual.getEsquerda();
+    //     }
+    // }
     
 }
