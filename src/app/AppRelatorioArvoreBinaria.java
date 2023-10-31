@@ -7,8 +7,7 @@ package app;
 import java.util.Comparator;
 
 //Ajuste esse importe para que importe sua classe de Árvore binária
-import lib.ArvoreBinaria;
-import lib.IArvoreBinaria;
+import lib.ArvoreAVL;
 
 /**
  *
@@ -23,54 +22,26 @@ public class AppRelatorioArvoreBinaria {
         GeradorDeArvores gerador = new GeradorDeArvores();
         //Instancio um comparador de alunos por matricula (também fornecido)
         ComparadorAlunoPorMatricula comparador = new ComparadorAlunoPorMatricula();
-        IArvoreBinaria<Aluno> arv;
+        ArvoreAVL<Integer> arv;
         
         
 //------Início do trecho citado nas questões 1, 2 e 3 do relatório-------------------------------
         //Instancio uma árvore binária. Lembre de ajustar o import para sua classe de árvore binária
-        arv = new ArvoreBinariaExemplo(comparador);
+        arv = new ArvoreAVL(Comparator.naturalOrder());
+        arv.adicionar(8);
+        arv.adicionar(4);
+        arv.adicionar(10);
+        arv.adicionar(9);
+        arv.adicionar(15);
+        arv.adicionar(12);
+        arv.adicionar(14);
+        arv.adicionar(17);
+        arv.adicionar(5);
+        arv.adicionar(3);
+        arv.adicionar(1);
+        System.out.println("----------------------------");
+        arv.percorrerInOrder(arv.getRaiz());
         //Chamo o gerador para inserir 100 elementos nessa árvore de forma que fique degenerada
-        gerador.geraArvoreDegenerada(100, arv);
-        System.out.println("Árvore Degenerada Criada");
-        //Imprimo a quantidade de nós e a altura da árvore resultante
-        System.out.println("Quantidade de Nós: " + arv.quantidadeNos()+ " Altura: " + arv.altura());
-        arv = new ArvoreBinaria(comparador);
-        gerador.geraArvoreDegenerada(200, arv);
-        System.out.println("Árvore Degenerada Criada");
-        System.out.println("Quantidade de Nós: " + arv.quantidadeNos()+ " Altura: " + arv.altura());
-        arv = new ArvoreBinaria(comparador);
-        gerador.geraArvoreDegenerada(1000, arv);
-        System.out.println("Árvore Degenerada Criada");
-        System.out.println("Quantidade de Nós: " + arv.quantidadeNos()+ " Altura: " + arv.altura());
-        System.out.println("------------------------------------------------------------------");
-//------Fim do trecho citado nas questões 1, 2 e 3 do relatório-------------------------------
 
-//------Início do trecho citado nas questões 5, 6 e 7 do relatório-------------------------------
-        arv = new ArvoreBinaria(comparador);
-        //Chamo o gerador para inserir 100 elementos nessa árvore de forma que ela fique perfeitamente balanceada
-        gerador.geraArvorePerfeitamenteBalanceada(1,100,arv);
-        System.out.println("Árvore Perfeitamente Balanceada Criada");
-        System.out.println("Quantidade de Nós: " + arv.quantidadeNos()+ " Altura: " + arv.altura());
-        arv = new ArvoreBinaria(comparador);
-        gerador.geraArvorePerfeitamenteBalanceada(1,200,arv);
-        System.out.println("Árvore Perfeitamente Balanceada Criada");
-        System.out.println("Quantidade de Nós: " + arv.quantidadeNos()+ " Altura: " + arv.altura());
-        arv = new ArvoreBinaria(comparador);
-        gerador.geraArvorePerfeitamenteBalanceada(1,1000,arv);
-        System.out.println("Árvore Perfeitamente Balanceada Criada");
-        System.out.println("Quantidade de Nós: " + arv.quantidadeNos()+ " Altura: " + arv.altura());
-        System.out.println("------------------------------------------------------------------");
-//------Fim do trecho citado nas questões 5, 6 e 7 do relatório-------------------------------
-
-//------Início do trecho citado na questão 9 do relatório-------------------------------
-        arv = new ArvoreBinaria(comparador);
-        gerador.geraArvorePerfeitamenteBalanceada(1,50000,arv);
-        System.out.println("Árvore Perfeitamente Balanceada Criada");
-        System.out.println("Altura: " + arv.altura());
-        arv = new ArvoreBinaria(comparador);
-        gerador.geraArvoreDegenerada(50000, arv);
-        System.out.println("Árvore Degenerada Criada");
-        System.out.println(" Altura: " + arv.altura());
-//------Fim do trecho citado na questão 9 do relatório-------------------------------
     }
 }
