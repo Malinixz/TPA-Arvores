@@ -9,6 +9,8 @@ public class No<T> {
     private T valor;
     private No<T> filhoDireita;
     private No<T> filhoEsquerda;
+    private No<T> pai;
+    private Integer FB;
 
     
     public No(T valor){
@@ -59,5 +61,15 @@ public class No<T> {
         this.filhoEsquerda = filhoEsquerda;
     }
 
+    public No<T> getPai() { return pai; }
 
+    public void setPai(No<T> novoPai) { this.pai = novoPai; }
+
+    public int getFB() {
+        return FB;
+    }
+
+    public void setFB(int fb) {
+        this.FB = fb;
+    }
 }
